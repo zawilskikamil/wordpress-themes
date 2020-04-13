@@ -3,4 +3,5 @@ twentynineteen/
 twentyseventeen/
 twentytwenty/
 
-.index.php
+.DS_Store
+index.php

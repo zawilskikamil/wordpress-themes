@@ -1,3 +1,7 @@
-$(document).ready(function(){
-	// put js code here :)
-})
+$(document).ready(function () {
+
+  $('.third-button').on('click', function () {
+
+    $('.burger').toggleClass('open');
+  });
+});
