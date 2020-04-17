@@ -1,5 +1,7 @@
 <?php 
 
+// load style and js scripts
+
 function load_stylesheets()
 {
 	wp_register_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array(), false, 'all');
@@ -29,8 +31,32 @@ function load_js()
 }
 add_action('wp_enqueue_scripts', 'load_js'); 
 
-add_theme_support('menus');
+// custom bootstrap styles 
 
+function helpwp_boodstrap_item_nav_class( $classes, $item, $args ) {
+    $classes[] = "nav-item"; 
+    return $classes;
+}
+add_filter( 'nav_menu_css_class' , 'helpwp_boodstrap_item_nav_class' , 10, 4 );
+
+function helpwp_boodstrap_item_link_nav_class( $atts, $item, $args ) {
+    $atts['class'] = 'nav-link';
+    return $atts;
+}
+add_filter( 'nav_menu_link_attributes', 'helpwp_boodstrap_item_link_nav_class', 10, 3 );
+
+function helpwp_custom_logo_output( $html ) {
+    $html = str_replace('custom-logo-link', 'navbar-brand', $html); 
+    return $html;
+}
+add_filter( 'get_custom_logo' , 'helpwp_custom_logo_output' , 10);
+
+// add theme supports 
+add_theme_support('custom-header');
+add_theme_support( 'title-tag' );
+add_theme_support( 'custom-logo');
+
+add_theme_support('menus');
 register_nav_menus(
 	array(
 		'top-menu' => __('Top Menu', 'theme'),
@@ -38,16 +64,5 @@ register_nav_menus(
 	)
 );
 
-function boodstrap_item_nav_class( $classes, $item, $args ) {
-    $classes[] = "nav-item"; 
-    return $classes;
-}
-add_filter( 'nav_menu_css_class' , 'boodstrap_item_nav_class' , 10, 4 );
-
-function boodstrap_item_link_nav_class( $atts, $item, $args ) {
-    $atts['class'] = 'nav-link';
-    return $atts;
-}
-add_filter( 'nav_menu_link_attributes', 'boodstrap_item_link_nav_class', 10, 3 );
 
 ?>

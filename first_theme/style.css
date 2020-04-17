@@ -106,3 +106,15 @@ transform: rotate(-45deg);
 top: 21px;
 left: 8px;
 }
+
+.custom-logo {
+	height: 50px;
+    width: auto;
+}
+
+.third-button {
+	position: fixed;
+    padding: inherit;
+    right: 10px;
+    top: 20px;
+}
